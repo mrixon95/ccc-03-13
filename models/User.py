@@ -6,8 +6,12 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(), nullable=False, unique=True)
     password = db.Column(db.String(), nullable=False)
+    books = db.relationship("Book", backref="user", lazy="dynamic")
 
     # cosmetic for debugging purposes
     # anytime you create a new model you must also create a new schema
     def __repr__(self):
         return f"<User {self.email}>"
+
+
+
